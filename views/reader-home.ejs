@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reader - Home Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    
+
+    <style>
+        button {
+            background-color: rgb(0, 127, 255);
+            color : white;
+            border-radius: 12px;
+        }
+
+        #reader-home-blog-title {
+            font-size : 60px;
+        }
+
+        #reader-home-blog-subtitle {
+            font-size : 40px;
+        }
+
+        #reader-home-name {
+            font-size : 30px;
+        }
+
+        button:hover {
+            cursor : pointer;
+            box-shadow : rgba(11, 13, 14, 0.8) 0px 2px 4px 0px;
+        }
+
+        .reader-home-details {
+            text-align: center;
+        }
+
+        #reader-home-label {
+            background-color: rgba(var(--bs-info-rgb), .5);
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            margin: 10px;
+            padding : 10px;
+        }
+
+        #reader-home-settings-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px;
+            padding : 10px;
+
+            font-size : 30px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #reader-home-create-new-draft {
+            padding : 10px;
+
+            font-size : 30px;
+        }
+
+        ul {
+            list-style: none;
+            margin-top : 50px;
+            margin-bottom : 50px;
+            margin-right : 30px;
+            margin-left : 30px;
+
+
+            border-style : solid;
+            border-width : 5px;
+            
+            padding : 20px;
+
+            background-color: blanchedalmond;
+            font-size : 30px;
+        }
+
+        .edit-article-button, .delete-article-button, .read-article-button, .publish-article-button {
+            top : 0px;
+            bottom : auto;
+
+            font-size : 20px;
+        }
+
+        li {
+            list-style-type: none;
+
+            display : flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Displays that current page is reader page -->
+    <h1 id="reader-home-label">READER</h1>
+
+    <!-- Blog title, blog subtitle and reader name -->
+    <h1 class="reader-home-details" id="reader-home-blog-title"><%= author.blogTitle %></h1>
+    <h1 class="reader-home-details" id="reader-home-blog-subtitle"><%= author.blogSubtitle %></h1>
+    <h1 class="reader-home-details" id="reader-home-name"><%= author.authorName %></h1>
+
+    <!-- show all articles -->
+    <li>
+        <% for (article of articles) { %>
+            <ul>
+                <!-- first line -->
+                <span class="article-name"> <%= article.articleName %> </span>
+                <a href="reader-article-page?articleID=<%= article.articleID %>&source=reader-home"><button class="read-article-button btn btn-primary">READ</button></a>
+                <p class="article-published-on">Published on : <%= article.publishedOn %> </p>
+            </ul>
+        <% } %>
+    </li>
+</body>
+</html>

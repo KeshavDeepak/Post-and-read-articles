@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author - Settings Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <style>
+        #author-settings-label {
+            background-color: rgba(var(--bs-info-rgb), .5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 10px;
+            padding : 10px;
+        }
+
+        #author-settings-body {
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            background-color: rgba(var(--bs-primary-rgb), .5);
+            text-align : center;
+            width : 40%;
+            padding-bottom : 30px;
+            border-radius: 12px;
+        }
+
+        input {
+            font-family : monospace;
+            width : 80%;
+            font-size : 25px;
+            text-align : center;
+
+            border-radius: 12px;
+        }
+
+        textarea {
+            width : 80%;
+            font-size : 25px;
+            text-align : center;
+
+            border-radius: 12px;
+        }
+
+        button {
+            background-color: rgb(0, 127, 255);
+            color : white;
+            border-radius: 12px;
+        }
+
+        button:hover {
+            cursor : pointer;
+            box-shadow : rgba(11, 13, 14, 0.8) 0px 2px 4px 0px;
+        }
+
+        #author-settings-back-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px;
+            padding : 10px;
+
+            font-size : 30px;
+        }
+
+        #author-settings-update-button {
+            font-size : 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Displays that current page is author page -->
+    <h1 id="author-settings-label">SETTINGS</h1>
+
+    <!-- change author information -->
+    <div id="author-settings-body">
+        <!-- form to change author settings -->
+        <form action="author-settings-update" method = "GET" >
+            <h1>Blog title</h1>
+            <input style="background-color: <%= titleInputColor %>" type="text" id="blog-title-input" name="blogTitleInput" value="<%= authorDetails.blogTitle %>">
+
+            <h1>Blog subtitle</h1>
+            <textarea style="background-color: <%= subtitleInputColor %>" type="text" id="blog-subtitle-input" name="blogSubtitleInput" value=""><%= authorDetails.blogSubtitle %></textarea>
+
+            <h1>Author name</h1>
+            <input style="background-color: <%= authorNameInputColor %>" type="text" id="author-name-input" name="authorNameInput" value="<%= authorDetails.authorName %>">
+            
+            <br>
+            <br>
+            <br>
+
+            <button id="author-settings-update-button" type="submit" class="btn btn-primary">UPDATE</button>
+        </form>
+    </div>
+
+    <!-- back button -->
+    <a href="/user/author-settings-update"><button id="author-settings-back-button" class="btn btn-primary">BACK</button></a>
+</body>
+</html>

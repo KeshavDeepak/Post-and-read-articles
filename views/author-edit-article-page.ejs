@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author - Edit Article Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            margin : 15px;
+        }
+        button {
+            background-color: rgb(0, 127, 255);
+            color : white;
+            border-radius: 12px;
+        }
+
+        button:hover {
+            cursor : pointer;
+            box-shadow : rgba(11, 13, 14, 0.8) 0px 2px 4px 0px;
+        }
+
+        .article-metadata {
+            font-size : 20px;
+            text-align : center;
+            vertical-align: center;
+            margin-right : 50px;
+            
+            padding-right : 50px;
+            padding-left : 50px;
+            padding-bottom : 10px;
+            padding-top : 10px;
+
+            background-color: rgba(var(--bs-info-rgb), .5);
+        }
+
+        #article-name {
+            font-weight: bold;
+            font-size : 30px;
+        }
+
+        #article-description {
+            font-size : 25px;
+        }
+
+        #article-content {
+            font-size : 25px;
+            height : 600px;
+        }
+
+        #edit-article-save-button {
+            font-size : 30px;
+        }
+
+        #edit-article-back-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px;
+            padding : 10px;
+
+            font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- metadata about the article -->
+    <span class="article-metadata badge bg-secondary">Last modified : <%= article.lastModified %></span>
+    <span class="article-metadata badge bg-secondary">Created on: <%= article.createdOn %></span>
+
+    <br>
+    <br>
+
+    <!-- article content in an editable form -->
+    <form action="update-article" METHOD="POST">
+        <!-- name of article -->
+        <input type="text" id="article-name" name="article-name" value="<%= article.articleName %>" class="form-control">
+        
+        <br>
+        <br>
+
+        <!-- article subtitle -->
+        <textarea type="text" id="article-description" name="article-description" class="form-control"><%= article.articleDescription %></textarea>
+
+        <br>
+        <br>
+
+        <!-- article oontent -->
+        <textarea type="text" id="article-content" name="article-content" class="form-control"><%= article.articleContent %></textarea>
+        
+        <br>
+
+        <!-- save changes button -->
+        <button id="edit-article-save-button" type="submit" class="btn btn-primary">SAVE</button>
+
+        <!-- save article ID so it can be used for processing after form is submitted -->
+        <input type="hidden" name="articleID" value="<%= article.articleID %>">
+    </form>
+
+    <!-- back button -->
+    <a href="/user/author-home"><button id="edit-article-back-button" class="btn btn-primary">BACK</button></a>
+
+</body>
+</html>

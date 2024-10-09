@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reader - Article Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    
+
+    <style>
+        body {
+            margin : 15px;
+        }
+        button {
+            background-color: rgb(0, 127, 255);
+            color : white;
+            border-radius: 12px;
+        }
+
+        button:hover {
+            cursor : pointer;
+            box-shadow : rgba(11, 13, 14, 0.8) 0px 2px 4px 0px;
+        }
+
+        .article-metadata {
+            font-size : 20px;
+            text-align : center;
+            vertical-align: center;
+            margin-right : 50px;
+            
+            padding-right : 50px;
+            padding-left : 50px;
+            padding-bottom : 10px;
+            padding-top : 10px;
+
+            background-color: rgba(var(--bs-info-rgb), .5);
+        }
+
+        #article-name {
+            font-weight: bold;
+            font-size : 50px;
+        }
+
+        #article-description {
+            font-size : 30px;
+
+            width : 30%;
+        }
+
+        #article-content {
+            font-size : 25px;
+
+            width : 90%;
+        }
+
+        #edit-article-save-button {
+            font-size : 30px;
+        }
+
+        #edit-article-back-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px;
+            padding : 10px;
+
+            font-size : 30px;
+        }
+
+        textarea {
+            font-family : monospace;
+            font-size : 25px;
+
+            width : 60%;
+
+            border-radius: 12px;
+        }
+
+        #submit-comment-button {
+            font-size : 20px;
+            padding : 10px;
+        }
+
+        #like-button {
+            font-size : 20px;
+            padding : 10px;
+
+            margin-left : 30px;
+        }
+
+        #number-of-likes-counter {
+            font-size : 40px;
+
+            margin-left : 20px;
+            margin-right : 20px;
+        }
+
+        #buttons-and-like-counter {
+            display : flex;
+            align-items: center;
+        }
+
+        p {
+            font-size : 30px;
+        }
+
+        ul {
+            list-style-type: none;
+
+            display : flex;
+            flex-wrap: wrap;
+        }
+
+        li {
+            background-color: antiquewhite;
+            margin : 10px;
+            padding : 30px;
+
+            width : fit-content;
+        }
+
+        .commentContents {
+            font-size : 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- metadata about the article -->
+    <span class="article-metadata badge bg-secondary">Published on : <%= article.publishedOn %></span>
+
+    <br>
+
+    <!-- article content-->
+    <h1 id="article-name"><%= article.articleName %></h1>
+    <h2 id="article-description"><%= article.articleDescription %></h2>
+
+    <p id="article-content"><%= article.articleContent %></p>
+
+    <!-- submit a comment -->
+    <form action="submit-comment" method = "POST">
+        <textarea type="text" name="comment" onclick="this.select()">comment here..</textarea>
+
+        <br>
+
+        <div id="buttons-and-like-counter">
+            <button id="submit-comment-button" type="submit" class="btn btn-primary">UPLOAD COMMENT</button>
+
+            <a href="increment-likes?articleID=<%= article.articleID %>&source=<%= source %>"><button type="button" id="like-button" class="btn btn-primary">LIKE</button></a>
+            <span id="number-of-likes-counter"><%= article.numberOfLikes %></span>
+        </div>
+
+        <input type="hidden" name="articleID" value="<%= article.articleID %>">
+        <input type="hidden" name="source" value="<%= source %>">
+    </form>
+
+    <!-- comments -->
+    <div id="comments">
+        <p>Comments</p>
+
+        <ul>
+            <% for (comment of comments) { %>
+                <li>
+                    <div class="commentContents"><%= comment.commentContent %></div>
+                    <div class="commentDates"><%= comment.commentDate %></div>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+
+    <!-- back button -->
+    <a href="<%= source %>"><button id="edit-article-back-button" class="btn btn-primary">BACK</button></a>
+
+</body>
+</html>
